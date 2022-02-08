@@ -20,3 +20,9 @@ STM32CubeMX
 
 #gdb log
 openocd.log
+
+mdk_app/DebugConfig
+
+mdk_app/output
+
+mdk_app/RTE
