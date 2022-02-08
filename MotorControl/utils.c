@@ -4,8 +4,8 @@
 #include <cmsis_os.h>
 #include <stm32f4xx_hal.h>
 
-static const float one_by_sqrt3 = 0.57735026919f;
-static const float two_by_sqrt3 = 1.15470053838f;
+static const float one_by_sqrt3 = 0.57735026919f;//    1/(genhao3)
+static const float two_by_sqrt3 = 1.15470053838f;//    2/(genhao3)
 
 int SVM(float alpha, float beta, float* tA, float* tB, float* tC) {
     int Sextant;
@@ -140,7 +140,12 @@ float wrap_pm_pi(float theta) {
     while (theta < -M_PI) theta += (2.0f * M_PI);
     return theta;
 }
-
+//beware of inserting large angles!
+float wrap_pm_Enc(float theta, int32_t encoder_cpr, int32_t encoder_offset) {
+    while (theta >= (encoder_cpr-encoder_offset)) theta -= encoder_cpr;
+    while (theta < (-encoder_offset)) theta += encoder_cpr;
+    return theta;
+}
 // based on https://math.stackexchange.com/a/1105038/81278
 float fast_atan2(float y, float x) {
     // a := min (|x|, |y|) / max (|x|, |y|)

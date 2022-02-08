@@ -702,6 +702,7 @@ extern int16_t Isum;
 extern int16_t IKp;
 extern int16_t IKi;
 extern int16_t mod_s;
+extern uint16_t firstEnc;
 // Thread to handle deffered processing of USB interrupt, and
 // read commands out of the UART DMA circular buffer
 void cmd_parse_thread(void const * argument) {
@@ -731,6 +732,40 @@ void cmd_parse_thread(void const * argument) {
 		uint8_t sum = 0;
 		for (;;) 
 		{
+			reportData[4] = ((int16_t)(motors[0].encoder.phase*100.0)) >> 8;
+			reportData[5] = ((int16_t)(motors[0].encoder.phase*100.0));
+			reportData[6] = ((int16_t)(motors[0].encoder.pll_pos*1.0)) >> 8;
+			reportData[7] = ((int16_t)(motors[0].encoder.pll_pos*1.0));
+			reportData[8] = ((int16_t)(motors[0].sensorless.phase*100.0)) >> 8;
+			reportData[9] = ((int16_t)(motors[0].sensorless.phase*100.0));
+			reportData[10] = ((int16_t)(motors[0].sensorless.pll_pos*100.0)) >> 8;
+			reportData[11] = ((int16_t)(motors[0].sensorless.pll_pos*100.0));
+			reportData[12] = ((int16_t)(motors[0].encoder.pll_vel/200)) >> 8;
+			reportData[13] = ((int16_t)(motors[0].encoder.pll_vel/200));
+			reportData[14] = ((int16_t)(motors[0].encoder.encoder_state*1.0)) >> 8;
+			reportData[15] = ((int16_t)(motors[0].encoder.encoder_state*1.0));
+			reportData[16] = ((int16_t)(motors[0].sensorless.pll_vel*1.0)) >> 8;
+			reportData[17] = ((int16_t)(motors[0].sensorless.pll_vel*1.0));
+			reportData[18] = ((int16_t)(firstEnc)) >> 8;
+			reportData[19] = ((int16_t)(firstEnc));
+			
+//			reportData[4] = ((int16_t)(motors[0].vel_setpoint*1.0)) >> 8;//VKp
+//			reportData[5] = ((int16_t)(motors[0].vel_setpoint*1.0));//VKp
+//			reportData[6] = ((int16_t)(motors[0].encoder.pll_vel/200)) >> 8;
+//			reportData[7] = ((int16_t)(motors[0].encoder.pll_vel/200));
+//			reportData[8] = ((int16_t)(VKp)) >> 8;
+//			reportData[9] = ((int16_t)(VKp));
+//			reportData[10] = ((int16_t)(Vsum)) >> 8;
+//			reportData[11] = ((int16_t)(Vsum));
+//			reportData[12] = ((int16_t)(IKp*1.0)) >> 8;
+//			reportData[13] = ((int16_t)(IKp*1.0));
+//			reportData[14] = ((int16_t)(IKi*1.0)) >> 8;
+//			reportData[15] = ((int16_t)(IKi*1.0));
+//			reportData[16] = ((int16_t)(Isum*1.0)) >> 8;
+//			reportData[17] = ((int16_t)(Isum*1.0));
+//			reportData[18] = ((int16_t)(motors[0].current_control.Iq_measured*10.0)) >> 8;
+//			reportData[19] = ((int16_t)(motors[0].current_control.Iq_measured*10.0));
+			
 //			reportData[4] = ((int16_t)(motors[0].encoder.phase*100.0)) >> 8;
 //			reportData[5] = ((int16_t)(motors[0].encoder.phase*100.0));
 //			reportData[6] = ((int16_t)(motors[0].encoder.pll_pos*1.0)) >> 8;
@@ -748,47 +783,13 @@ void cmd_parse_thread(void const * argument) {
 //			reportData[18] = ((int16_t)(motors[0].vel_setpoint)) >> 8;
 //			reportData[19] = ((int16_t)(motors[0].vel_setpoint));
 			
-//			reportData[4] = ((int16_t)(motors[0].vel_setpoint*1.0)) >> 8;
-//			reportData[5] = ((int16_t)(motors[0].vel_setpoint*1.0));
-//			reportData[6] = ((int16_t)(motors[0].sensorless.pll_vel*1.0)) >> 8;
-//			reportData[7] = ((int16_t)(motors[0].sensorless.pll_vel*1.0));
-//			reportData[8] = ((int16_t)(VKi)) >> 8;
-//			reportData[9] = ((int16_t)(VKi));
-//			reportData[10] = ((int16_t)(Vsum)) >> 8;
-//			reportData[11] = ((int16_t)(Vsum));
-//			reportData[12] = ((int16_t)(IKp*1.0)) >> 8;
-//			reportData[13] = ((int16_t)(IKp*1.0));
-//			reportData[14] = ((int16_t)(IKi*1.0)) >> 8;
-//			reportData[15] = ((int16_t)(IKi*1.0));
-//			reportData[16] = ((int16_t)(Isum*1.0)) >> 8;
-//			reportData[17] = ((int16_t)(Isum*1.0));
-//			reportData[18] = ((int16_t)(motors[0].current_control.Iq_measured*10.0)) >> 8;
-//			reportData[19] = ((int16_t)(motors[0].current_control.Iq_measured*10.0));
-			
-			reportData[4] = ((int16_t)(motors[0].encoder.phase*100.0)) >> 8;
-			reportData[5] = ((int16_t)(motors[0].encoder.phase*100.0));
-			reportData[6] = ((int16_t)(motors[0].encoder.pll_pos*1.0)) >> 8;
-			reportData[7] = ((int16_t)(motors[0].encoder.pll_pos*1.0));
-			reportData[8] = ((int16_t)(motors[0].sensorless.phase*100.0)) >> 8;
-			reportData[9] = ((int16_t)(motors[0].sensorless.phase*100.0));
-			reportData[10] = ((int16_t)(motors[0].sensorless.pll_pos*100.0)) >> 8;
-			reportData[11] = ((int16_t)(motors[0].sensorless.pll_pos*100.0));
-			reportData[12] = ((int16_t)(motors[0].encoder.pll_vel/65.2)) >> 8;
-			reportData[13] = ((int16_t)(motors[0].encoder.pll_vel/65.2));
-			reportData[14] = ((int16_t)(motors[0].encoder.encoder_state*1.0)) >> 8;
-			reportData[15] = ((int16_t)(motors[0].encoder.encoder_state*1.0));
-			reportData[16] = ((int16_t)(motors[0].sensorless.pll_vel*1.0)) >> 8;
-			reportData[17] = ((int16_t)(motors[0].sensorless.pll_vel*1.0));
-			reportData[18] = ((int16_t)(motors[0].vel_setpoint)) >> 8;
-			reportData[19] = ((int16_t)(motors[0].vel_setpoint));
-			
 			for (int i = 0; i < 22; i++)
 			{
 				sum += reportData[i];
 			}
 			reportData[22] = sum;
 			sum = 0;
-			HAL_UART_Transmit(&huart4, reportData, 23, 1000);
+			HAL_UART_Transmit_IT(&huart4, reportData, 23);
 			osDelay(5);
 		}
     // Re-run state-machine forever

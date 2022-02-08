@@ -9,7 +9,7 @@ extern "C" {
     /* Includes ------------------------------------------------------------------*/
 #include <cmsis_os.h>
 #include "drv8301.h"
-
+#include "AS5047P.h"
 #define M0 0
 #define M1 1
 
@@ -143,6 +143,7 @@ extern "C" {
         Axis_legacy_t axis_legacy;
         Motor_control_mode_t control_mode;
 				uint8_t num;
+				uint16_t time;
         bool enable_step_dir;
         float counts_per_step;
         Error_t error;
@@ -172,6 +173,7 @@ extern "C" {
         Iph_BC_t current_meas;
         Iph_BC_t DC_calib;
         DRV8301_Obj gate_driver;
+//				AS5047P_Obj gate_as5047p;
         DRV_SPI_8301_Vars_t gate_driver_regs; //Local view of DRV registers
         Motor_type_t motor_type;
         float shunt_conductance;
@@ -269,6 +271,8 @@ extern "C" {
 // Test functions
     void scan_motor_loop(Motor_t* motor, float omega, float voltage_magnitude);
 // Main motor control
+		bool motor_buzzer(Motor_t* motor, float voltage_low, float voltage_high);
+		bool motor_muice(Motor_t* motor, uint8_t yingD, uint8_t time, uint8_t xiangD);
     bool do_checks(Motor_t* motor);
     bool loop_updates(Motor_t* motor);
     void update_rotor(Motor_t* motor);

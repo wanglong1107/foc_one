@@ -92,7 +92,7 @@ DRV8301_DcCalMode_e DRV8301_getDcCalMode(DRV8301_Handle handle,const DRV8301_Shu
     return((DRV8301_DcCalMode_e)data);
 } // end of DRV8301_getDcCalMode() function
 
-DRV8301_Word_t      readWordA;
+
 DRV8301_FaultType_e DRV8301_getFaultType(DRV8301_Handle handle) {
     DRV8301_Word_t      readWord;
     DRV8301_FaultType_e faultType = DRV8301_FaultType_NoFault;
@@ -100,7 +100,7 @@ DRV8301_FaultType_e DRV8301_getFaultType(DRV8301_Handle handle) {
 
     // read the data
     readWord = DRV8301_readSpi(handle,DRV8301_RegName_Status_1);
-	readWordA = DRV8301_readSpi(handle,DRV8301_RegName_Status_2);
+
     if (readWord & DRV8301_STATUS1_FAULT_BITS) {
         faultType = (DRV8301_FaultType_e)(readWord & DRV8301_FAULT_TYPE_MASK);
 

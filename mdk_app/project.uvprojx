@@ -10,13 +10,13 @@
       <TargetName>project</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F405ZGTx</Device>
           <Vendor>STMicroelectronics</Vendor>
-          <PackID>Keil.STM32F4xx_DFP.2.13.0</PackID>
+          <PackID>Keil.STM32F4xx_DFP.2.3.0</PackID>
           <PackURL>http://www.keil.com/pack</PackURL>
           <Cpu>IRAM(0x20000000,0x20000) IRAM2(0x10000000,0x10000) IROM(0x08000000,0x100000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -185,7 +185,6 @@
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
             <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -339,7 +338,7 @@
               <MiscControls>--gnu --c99 --cpu=Cortex-M4.fp --fpmode=fast</MiscControls>
               <Define>ARM_PRINTF,INTDEF,ARM_MDK,NDEBUG,__FPU_PRESENT=1,__FPU_USED =1,ARM_MATH_CM4,__CC_ARM,__GNUC__=5,USE_STDPERIPH_DRIVER,STM32F40XX,M_PI=3.1415926f __heap_base__=Image$$$$RW_IRAM1$$$$ZI$$$$Limit __heap_end__=Image$$$$RW_IRAM2$$$$Base</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;..\MotorControl;..\Drivers\DRV8301;..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\Middlewares\Third_Party\FreeRTOS\Source\include;..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS;..\Middlewares\ST\STM32_USB_Device_Library\Core\inc;..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\inc;..\Drivers\STM32F4xx_HAL_Driver\inc;..\Drivers\STM32F4xx_HAL_Driver\inc\Legacy;..\Drivers\CMSIS\Device\ST\STM32F4xx\include;..\Drivers\CMSIS\include</IncludePath>
+              <IncludePath>..\Inc;..\MotorControl;..\Drivers\DRV8301;..\Middlewares\Third_Party\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\Middlewares\Third_Party\FreeRTOS\Source\include;..\Middlewares\Third_Party\FreeRTOS\Source\CMSIS_RTOS;..\Middlewares\ST\STM32_USB_Device_Library\Core\inc;..\Middlewares\ST\STM32_USB_Device_Library\Class\CDC\inc;..\Drivers\STM32F4xx_HAL_Driver\inc;..\Drivers\STM32F4xx_HAL_Driver\inc\Legacy;..\Drivers\CMSIS\Device\ST\STM32F4xx\include;..\Drivers\CMSIS\include;..\Drivers\AS5047P</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -352,7 +351,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls>--cpreproc --cpu=Cortex-M4.fp  --fpmode=fast</MiscControls>
               <Define></Define>
@@ -647,6 +646,16 @@
               <FileName>drv8301.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Drivers\DRV8301\drv8301.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/AS5047P</GroupName>
+          <Files>
+            <File>
+              <FileName>AS5047P.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Drivers\AS5047P\AS5047P.c</FilePath>
             </File>
           </Files>
         </Group>
