@@ -26,3 +26,5 @@ mdk_app/DebugConfig
 mdk_app/output
 
 mdk_app/RTE
+
+mdk_app/.hasee
